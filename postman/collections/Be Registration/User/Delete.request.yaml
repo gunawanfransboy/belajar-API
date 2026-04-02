@@ -1,0 +1,25 @@
+$kind: http-request
+url: http://127.0.0.1:8000/api/users/2
+method: DELETE
+headers:
+  Content-MD5: Application/json
+body:
+  type: json
+  content: "// payload\r
+
+    \r
+
+    {\r
+
+    \    \"nama\":\"sawit pria\",\r
+
+    \    \"email\":\"priasawit@gmail.com\",\r
+
+    \    \"password\":\"12345678\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: 6|wouaMxNH4meWKeevtPBl6cZwDKOZZ999RlcWJYaVd4438fe6
+order: 4000

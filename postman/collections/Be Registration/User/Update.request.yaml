@@ -1,0 +1,25 @@
+$kind: http-request
+url: http://127.0.0.1:8000/api/users/3
+method: PUT
+headers:
+  Content-MD5: Application/json
+body:
+  type: json
+  content: "// payload\r
+
+    \r
+
+    {\r
+
+    \    \"name\":\"prabiwi\",\r
+
+    \    \"email\":\"prabowo@gmail.com\",\r
+
+    \    \"password\":\"12345678\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: 6|wouaMxNH4meWKeevtPBl6cZwDKOZZ999RlcWJYaVd4438fe6
+order: 3000

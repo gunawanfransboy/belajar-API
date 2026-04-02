@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ResponseHelper;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -58,19 +59,24 @@ class AuthController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Validation error',
-                    'error' => $validator->errors()
-                ], 422);
+                return ResponseHelper::error('Validation error', $validator->errors(), 422);
+
+                // response()->json([
+                //     'status' => false,
+                //     'message' => 'Validation error',
+                //     'error' => $validator->errors()
+                // ], 422);
             }
 
             $user = User::where('email', $request->email)->first();
             if (!$user || !Hash::check($request->password, $user->password)) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Email or password fail!! || Invalid credential!!'
-                ], 401); //anauthentication
+
+                return ResponseHelper::error('Invalid Credential!!', '', 401);
+
+                // return response()->json([
+                //     'status' => false,
+                //     'message' => 'Email or password fail!! || Invalid credential!!'
+                //     ], 401); //anauthentication
             }
 
             $token = $user->createToken('auth_token')->plainTextToken;
@@ -81,11 +87,14 @@ class AuthController extends Controller
                 'token' => $token
             ]);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Internal server error',
-                'error' => $th->getMessage()
-            ], 500);
+
+            return ResponseHelper::error('Internal server error', $th->getMessage(), 500);
+
+            // return response()->json([
+            //     'status' => false,
+            //     'message' => 'Internal server error',
+            //     'error' => $th->getMessage()
+            // ], 500);
         }
     }
 }

@@ -1,4 +1,5 @@
 $kind: http-request
+name: Index
 url: http://127.0.0.1:8000/api/users/
 method: GET
 headers:
@@ -6,5 +7,5 @@ headers:
 auth:
   type: bearer
   credentials:
-    token: 6|wouaMxNH4meWKeevtPBl6cZwDKOZZ999RlcWJYaVd4438fe6
+    token: "{{token}}"
 order: 1000

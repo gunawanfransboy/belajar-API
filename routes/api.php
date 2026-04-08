@@ -17,4 +17,5 @@ Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('users', \App\Http\Controllers\UserController::class);
+    Route::apiResource('roles', \App\Http\Controllers\Api\RoleController::class);
 });
